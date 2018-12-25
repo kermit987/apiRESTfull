@@ -1,19 +1,17 @@
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 8888;
+var express = require('express')
+var app = express()
+var port = process.env.PORT || 8888
 var bodyParser = require('body-parser')
-var routes = require('./routes/routes.js')
+var { router }= require('./routes')
 
 app.use(bodyParser.urlencoded({extended: true}))
-app.use('/', routes);
+app.use('/', router)
 
 
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').load();
+  require('dotenv').load()
 }
 
-app.listen(port, () => {
-  console.log("App running on port 8888")
-})
+app.listen(port)
 
 module.exports = app
